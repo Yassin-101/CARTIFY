@@ -10,9 +10,7 @@ const AdminHero = () => {
        <Menu />
        <span className='sr-only'>Toggle Menu</span>
       </button>
-      <div className='flex flex-1 justify-end'>
-        <button className='cursor-pointer bg-black text-white rounded-md inline-flex gap-2 px-4 py-3 items-center '> <LogOut /> Logout</button>
-      </div>
+     
       
     </div>
   )
