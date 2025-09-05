@@ -8,7 +8,7 @@ const AdminSidebar = () => {
       <h2 className='text-2xl font-bold text-red-600 mb-8'>CARTIFY ADMIN</h2>
       <span className=''>
         <ul>
-          <NavLink>
+          <NavLink to={'/admin'} className={({isActive})=>`block px-2 py-2 rounded hover:text-red-600 ${isActive?"font-medium text-gray-700":"text-red-600"}`}>
           <span className='flex gap-2 text-lg items-center'>
           <LayoutDashboard />
             Dashboard
