@@ -24,7 +24,7 @@ const App = () => {
       {/* Admin pages */}
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<AdminView />} />
-           <Route path="products" element={<AdminProduct />} /> {/* Product Management */}
+           <Route path="products" element={<AdminProduct />} /> 
       </Route>
     </Routes>
   )

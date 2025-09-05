@@ -1,33 +1,18 @@
 # Node modules
 node_modules/
-backend/node_modules/
-frontend/node_modules/
-
-# Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
 # Build outputs
+.next/
 dist/
 build/
-.cache/
-.next/
-out/
 
-# IDE files
+# IDE / Editor files
 .vscode/
 .idea/
-*.swp
-*.swo
+*.log
+
+# Eclipse / WildWebDeveloper
+.p2/
 
 # OS files
 .DS_Store
