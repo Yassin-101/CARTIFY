@@ -3,9 +3,12 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import AdminSidebar from "../Component/AdminSidebar";
 import AdminHero from "../Component/AdminHero";
+import { AdminProvider } from "../context/AdminContext";
 
 const AdminLayout = () => {
   return (
+<AdminProvider>
+      
     <div className="flex min-h-screen w-full">
       {/* Sidebar (always visible) */}
       <AdminSidebar />
@@ -20,6 +23,7 @@ const AdminLayout = () => {
         </main>
       </div>
     </div>
+</AdminProvider>
   );
 };
 
