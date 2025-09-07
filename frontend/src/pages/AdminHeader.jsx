@@ -35,21 +35,20 @@ const AdminHeader = () => {
         const formData = new FormData()
         images.forEach((img)=>formData.append("images",img))
         formData.append('category',category)
-       
-    try {
-      setLoading(true);
-      await axios.post("http://localhost:3100/api/header/upload", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      setMessage({ type: "success", text: "Images uploaded successfully!" });
-      setImages([null, null, null]);
-      setPreview([null, null, null]);
-    } catch (err) {
-      console.error(err);
-      setMessage({ type: "error", text: "Upload failed. Please try again." });
-    } finally {
-      setLoading(false);
-    }
+        try {
+            setLoading(true)
+            await axios.post("http://localhost:3100/api/header/upload",formData,{
+                headers: {"Content-Type":"multipart/form-data"},
+            })
+            setMessage({type:"success",text:"Images upload successfully!"})
+            setImages([null,null,null])
+            setPreview([null,null,null])
+        } catch (error) {
+            console.error(error)
+            setMessage({type:"error",text:"Upload failed. Please try again"})
+        }finally{
+            setLoading(false)
+        }
     }
   return (
     <div className=' bg-gray-50 py-5 px-6'>
