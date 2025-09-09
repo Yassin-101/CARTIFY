@@ -23,7 +23,7 @@ const New = ({category}) => {
       </div>
       {/* All 12 images */}
       <div className='grid grid-cols-2 md:grid-cols-6'>
-
+        
       </div>
     </div>
   )
