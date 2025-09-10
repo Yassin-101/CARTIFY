@@ -29,7 +29,7 @@ const New = ({category}) => {
   },[])
   return (
     <div>
-      <div className='text-left py-8 px-5 text-xl flex flex-row justify-between '>
+      <div className='text-left py-8 px-5 mt-10 text-xl flex flex-row justify-between '>
         <p className='text-2xl'>NEW IN</p>
         <p className='underline cursor-pointer uppercase'>View All</p>
       </div>

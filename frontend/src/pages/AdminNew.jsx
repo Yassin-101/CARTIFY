@@ -12,27 +12,27 @@ const AdminNew = () => {
 
   // Handle file selection
   const handleFile = (e, index) => {
-    const file = e.target.files[0];
+    const file = e.target.files[0]
     if (!file) return;
 
-    const newImages = [...images];
-    newImages[index] = file;
-    setImages(newImages);
+    const newImages = [...images]
+    newImages[index] = file
+    setImages(newImages)
 
-    const newPreview = [...preview];
-    newPreview[index] = URL.createObjectURL(file);
-    setPreview(newPreview);
-  };
+    const newPreview = [...preview]
+    newPreview[index] = URL.createObjectURL(file)
+    setPreview(newPreview)
+  }
 
   // Remove image
   const handleRemove = (index) => {
-    const newImages = [...images];
-    newImages[index] = null;
-    setImages(newImages);
+    const newImages = [...images]
+    newImages[index] = null
+    setImages(newImages)
 
-    const newPreview = [...preview];
-    newPreview[index] = null;
-    setPreview(newPreview);
+    const newPreview = [...preview]
+    newPreview[index] = null
+    setPreview(newPreview)
   };
 
   // Upload all 12
@@ -43,30 +43,30 @@ const AdminNew = () => {
     }
 
     const formData = new FormData();
-    images.forEach((img) => formData.append("images", img));
-    formData.append("category", category);
+    images.forEach((img) => formData.append("images", img))
+    formData.append("category", category)
 
     try {
-      setLoading(true);
-      setProgress(0);
+      setLoading(true)
+      setProgress(0)
 
       await axios.post("http://localhost:3100/api/new-collection/upload", formData, {
         headers: { "Content-Type": "multipart/form-data" },
         onUploadProgress: (e) => {
-          const percent = Math.round((e.loaded * 100) / e.total);
-          setProgress(percent);
+          const percent = Math.round((e.loaded * 100) / e.total)
+          setProgress(percent)
         },
-      });
+      })
 
-      setMessage({ type: "success", text: "Images uploaded successfully!" });
-      setImages(Array(12).fill(null));
-      setPreview(Array(12).fill(null));
+      setMessage({ type: "success", text: "Images uploaded successfully!" })
+      setImages(Array(12).fill(null))
+      setPreview(Array(12).fill(null))
     } catch (error) {
-      console.error(error);
-      setMessage({ type: "error", text: "Upload failed. Please try again." });
+      console.error(error)
+      setMessage({ type: "error", text: "Upload failed. Please try again." })
     } finally {
-      setLoading(false);
-      setTimeout(() => setProgress(0), 1000);
+      setLoading(false)
+      setTimeout(() => setProgress(0), 1000)
     }
   };
 
@@ -121,7 +121,7 @@ const AdminNew = () => {
               />
               <label
                 htmlFor={`file-${index}`}
-                className="w-32 h-32 rounded-lg border border-dashed border-gray-300 flex items-center justify-center cursor-pointer hover:border-black transition overflow-hidden"
+                className="w-40 h-40 rounded-lg border border-dashed border-gray-300 flex items-center justify-center cursor-pointer hover:border-black transition overflow-hidden"
               >
                 {preview[index] ? (
                   <img
@@ -130,7 +130,7 @@ const AdminNew = () => {
                     className="w-full h-full object-cover rounded-lg"
                   />
                 ) : (
-                  <img src={upload} alt="upload" className="w-10 opacity-60" />
+                  <img src={upload} alt="upload" className="w-40 opacity-60" />
                 )}
               </label>
 
