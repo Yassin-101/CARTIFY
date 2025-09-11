@@ -1,13 +1,13 @@
-const express = require("express");
-const multer = require("multer");
-const path = require("path");
+const express = require("express")
+const multer = require("multer")
+const path = require("path")
 const {
   uploadImages,
   getCategory,
   getAllCategories,
-} = require("../controllers/headerController");
+} = require("../controllers/headerController")
 
-const router = express.Router();
+const router = express.Router()
 
 // Multer setup
 const storage = multer.diskStorage({
@@ -20,8 +20,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Routes
-router.post("/upload", upload.array("images", 10), uploadImages);
-router.get("/:category", getCategory);
-router.get("/", getAllCategories);
+router.post("/upload", upload.array("images", 10), uploadImages)
+router.get("/:category", getCategory)
+router.get("/", getAllCategories)
 
 module.exports = router;
