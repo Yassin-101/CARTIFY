@@ -26,11 +26,11 @@ const SelectedCollection = ({ category }) => {
           <div key={index} className="">
             <img src={`http://localhost:3100${item.image}`} className="w-full h-auto object-cover cursor-pointer" />
             {/* images names */}
-            <p className="pt-3 text-2xl font-medium uppercase cursor-pointer">
+            <p className="pt-4 text-2xl  uppercase cursor-pointer">
               {item.name}
             </p>
              {/* Explore */}
-      <h3 className="pt-3 text-2xl font-medium uppercase cursor-pointer">Explore</h3>
+      <h3 className="pt-1 pb-10 text-2xl   uppercase cursor-pointer">Explore</h3>
           </div>
         ))}
       </div>
