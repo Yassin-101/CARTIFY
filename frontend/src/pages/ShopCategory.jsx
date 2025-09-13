@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import Navbar from '../Component/Navbar'
 import New from '../Component/New'
 import SelectedCollection from '../Component/SelectedCollection'
+import Text from '../Component/Text'
 
 const ShopCategory = () => {
   const {category} = useParams()
@@ -13,6 +14,7 @@ const ShopCategory = () => {
       <Header category={category}/>
       <New category={category}/>
       <SelectedCollection category={category}/>
+      <Text category={category}/>
     </div>
   )
 }
