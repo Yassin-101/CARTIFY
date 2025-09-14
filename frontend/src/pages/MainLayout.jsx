@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../Component/Navbar'
 import Header from '../Component/Header'
 import { Outlet, useParams } from 'react-router-dom'
+import Footer from '../Component/Footer'
 
 const MainLayout = () => {
     const {category} = useParams()
@@ -13,6 +14,7 @@ const MainLayout = () => {
       <main>
         <Outlet/>
       </main>
+      <Footer/>
     </div>
   )
 }
