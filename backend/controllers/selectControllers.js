@@ -1,57 +1,57 @@
+// controllers/selectControllers.js
 const SelectedCollection = require("../models/select");
 
-//upload 4 images and name
-const uploadSelectedCollection = async(req,res)=>{
-    const {category,names} = req.body
-    if(!category) return res.status(400).send("Category is required")
-    
-        try {
-            // req.files then it will upload
-            const images = req.files.map((file)=>`/uploads/${file.filename}`)
-            const parName = JSON.parse(names)  // top trouser shirt
+// upload selected collection (4 images + names + subCategories)
+const uploadSelectedCollection = async (req, res) => {
+  const { category, names, subCategories } = req.body;
+  if (!category) return res.status(400).send("Category is required");
 
-            if(images.length !== 4 || parName.length !== 4 ){
-                return res.status(400).send("Exactly 4 images and names are required")
-            }
+  try {
+    const images = req.files.map((file) => `/uploads/${file.filename}`);
+    const parsedNames = JSON.parse(names || "[]"); // ["Top", "Shirt", ...]
+    const parsedSub = JSON.parse(subCategories || "[]"); // ["top","jacket",...]
 
-            const items = images.map((img,i)=>({
-                 image:img,
-                name: parName[i]
-            }))
-
-            const collection = await SelectedCollection.findOneAndUpdate(
-                {category},
-                {items},
-                {upsert:true,new:true}
-            )
-            res.json({success:true,collection})
-        } catch (error) {
-               console.error(err);
-             res.status(500).send("Server error")
-        }
-}
-
-// get one category
-const getSelectCategory = async(req,res)=>{
-    try {
-        const collection = await SelectedCollection.findOne({category:req.params.category})
-        res.json(collection || {category:req.params.category,items:[]})
-    } catch (error) {
-        console.error(err);
-         res.status(500).send("Server error")
+    if (images.length !== 4 || parsedNames.length !== 4 || parsedSub.length !== 4) {
+      return res.status(400).send("Exactly 4 images, names and subCategories are required");
     }
-}
 
-// get all category
+    const items = images.map((img, i) => ({
+      image: img,
+      name: parsedNames[i],
+      subCategory: parsedSub[i]
+    }));
 
-const getAllSelectCategory = async(req,res)=>{
-    try {
-        const collection = await SelectedCollection.find({})
-        res.json(collection)
-    } catch (error) {
-        console.error(err);
-             res.status(500).send("Server error")
-    }
-}
+    const collection = await SelectedCollection.findOneAndUpdate(
+      { category },
+      { items },
+      { upsert: true, new: true }
+    );
 
-module.exports ={uploadSelectedCollection,getSelectCategory,getAllSelectCategory}
+    res.json({ success: true, collection });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+};
+
+const getSelectCategory = async (req, res) => {
+  try {
+    const collection = await SelectedCollection.findOne({ category: req.params.category });
+    res.json(collection || { category: req.params.category, items: [] });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+};
+
+const getAllSelectCategory = async (req, res) => {
+  try {
+    const collection = await SelectedCollection.find({});
+    res.json(collection);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+};
+
+module.exports = { uploadSelectedCollection, getSelectCategory, getAllSelectCategory };

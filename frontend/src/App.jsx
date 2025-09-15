@@ -15,6 +15,8 @@ import AdminSelected from './pages/AdminSelected'
 import AdminNotifications from './pages/AdminNotifications'
 import AdminSetting from './pages/AdminSetting'
 import AdminCustomer from './pages/AdminCustomer'
+import ShopProduct from './pages/ShopProduct'
+import AdminShopProduct from './pages/AdminShopProduct'
 
 const App = () => {
   return (
@@ -23,6 +25,7 @@ const App = () => {
       <Route path="/" element={<MainLayout />}>
         {/* dynamic category route */}
         <Route path=":category" element={<ShopCategory />} />
+         {/* <Route path="/:category/:subCategory" element={<ShopProduct />} /> */}
         {/* static pages */}
         <Route path="/Login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
@@ -35,6 +38,7 @@ const App = () => {
            <Route path='header' element={<AdminHeader/>}/>
            <Route path='new' element={<AdminNew/>}/>
            <Route path='selected' element={<AdminSelected/>}/>
+           <Route path="shop-products" element={<AdminShopProduct />} />
            <Route path="products" element={<AdminProduct />} /> 
            <Route path='customer' element={<AdminCustomer/>}/>
            <Route path='notification' element={<AdminNotifications/>}/>
