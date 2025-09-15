@@ -38,6 +38,13 @@ const AdminSidebar = () => {
                 Selected Collection
               </span>
             </NavLink>
+              {/* Selected Collection Products */}
+        <NavLink to={'shop-products'} onClick={()=>setPageTitle('Selected Products')} className={({isActive})=>`block px-2 py-3 rounded hover:text-red-600 ${isActive?"font-medium text-red-600":"font-medium text-gray-700"}`}>
+  <span className="flex gap-2 text-lg items-center">
+    <Library />
+    Selected Products
+  </span>
+</NavLink>
             {/* products */}
             <NavLink onClick={()=>setPageTitle('Products')}  to={'products'} className={({isActive})=>`block px-2 py-3 rounded hover:text-red-600 ${isActive?"font-medium text-red-600":"font-medium text-gray-700"}`}>
               <span className="flex gap-2 text-lg items-center">

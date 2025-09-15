@@ -5,7 +5,8 @@ const selectedCollectionSchema = new mongoose.Schema({
     items:[
         {
             image:{type:String,required:true},
-            name:{type:String,required:true}
+            name:{type:String,required:true},
+            subCategory: { type: String, required: true } // added so clicking knows where to go
         }
     ]
 })

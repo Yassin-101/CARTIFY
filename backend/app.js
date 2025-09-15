@@ -18,6 +18,8 @@ const authRoutes = require('./routes/authRoutes')
 const headerRoutes = require('./routes/headerRoutes')
 const newRoutes = require("./routes/NewRoutes")
 const selectRoutes = require("./routes/selectRoutes")
+const shopRoutes = require("./routes/shopRoutes")
+
 // const adminRoutes = require("./routes/admin");
 
 
@@ -34,6 +36,8 @@ app.use("/api/auth",authRoutes)
 app.use("/api/header",headerRoutes)
 app.use("/api/new-collection",newRoutes)
 app.use("/api/selected-collection",selectRoutes)
+app.use("/api/shop-product",shopRoutes)
+
 // app.use("/api/admin", adminRoutes);
 
 
