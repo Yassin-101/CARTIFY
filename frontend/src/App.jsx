@@ -25,7 +25,7 @@ const App = () => {
       <Route path="/" element={<MainLayout />}>
         {/* dynamic category route */}
         <Route path=":category" element={<ShopCategory />} />
-         {/* <Route path="/:category/:subCategory" element={<ShopProduct />} /> */}
+         <Route path="/:category/:subCategory" element={<ShopProduct />} />
         {/* static pages */}
         <Route path="/Login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
