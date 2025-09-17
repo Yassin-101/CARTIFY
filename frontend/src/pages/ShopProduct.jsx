@@ -6,14 +6,14 @@ import { ShopContext } from '../context/ShopContext'
 
 const ShopProduct = () => {
   const {category,subCategory} = useParams()
-  const [shopProduct,setProducts] = useState([])
+  const [shopProduct,setProduct] = useState([])
   const {currency} = useContext(ShopContext)
 
   useEffect(()=>{
     const fetchProduct = async()=>{
       try {
         const res = await axios.get(`http://localhost:3100/api/shop-product/${category}/${subCategory}`)
-        setProducts(res.data.products || [])
+        setProduct(res.data.product || [])
       } catch (error) {
         console.error(error)
       }
@@ -23,21 +23,21 @@ const ShopProduct = () => {
   return (
     <div className=''>
       {/* subCategory */}
-      <h1 className='text-4xl font-semibold uppercase p-8'>{subCategory}</h1>
+      <h1 className='text-5xl font-semibold uppercase p-8'>{subCategory}</h1>
       {/* sort & filtering */}
-      <div className='uppercase text-xl underline flex flex-row justify-between items-center left-3 right-3'>
+      <div className='uppercase text-2xl underline flex flex-row justify-between items-center  '>
         <p className='flex pl-8 mt-2 cursor-pointer'>sort by <Plus /></p>
         <p className='flex pr-8 cursor-pointer'>filter <ListFilter /></p>
       </div>
 
          {/* images */}
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 cursor-pointer py-6'>
         {shopProduct.map((p,index)=>(
           <div key={index} >
             <img src={`http://localhost:3100${p.image}`} alt="" className='w-full h-auto object-cover'/>
-            <div className='pt-1'>
-              <h3 className='text-lg'>{p.name}</h3>
-              <p className='pt-1 font-bold'>{currency}{p.price}</p>
+            <div className=' pl-6 py-5'>
+              <h3 className='text-[23px] uppercase'>{p.name}</h3>
+              <p className='pt-1 font-bold text-[21px] pb-3'>{currency}   {p.price}.00</p>  
             </div>
           </div>
         ))}
