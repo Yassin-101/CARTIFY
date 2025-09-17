@@ -13,7 +13,7 @@ const upload = multer({storage})
 router.post("/upload",upload.single("image"),uploadShopProduct)
 
 //get products by category/subCategory
-router.get("/:category/:subCatgeory",getShopProductByCategory)
+router.get("/:category/:subCategory",getShopProductByCategory)
 
 // get all products
 router.get("/",getAllShopProduct)

@@ -15,7 +15,7 @@ const AdminShopProduct = () => {
 
   // save all the file here
   const handleFile = (e)=>{
-    const file = e.target.file[0]
+    const file = e.target.files[0]
     if(!file) return 
     setImage(file)
     setPreview(URL.createObjectURL(file))
@@ -86,7 +86,7 @@ const AdminShopProduct = () => {
               </>
             ): (
               <label htmlFor='file-upload' className='cursor-pointer flex flex-col items-center text-gray-500'>
-                <img src={upload} alt="" className='w-47 opacity-60 ' />
+                <img src={upload} alt="" className='w-46 opacity-60 ' />
               
 
               </label>
