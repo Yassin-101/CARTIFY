@@ -35,7 +35,7 @@ const ShopProduct = () => {
         {shopProduct.map((p,index)=>(
           <div key={index} >
             <img src={`http://localhost:3100${p.image}`} alt="" className='w-full h-auto object-cover'/>
-            <div className=' pl-6 py-5'>
+            <div className=' pl-6 py-5 max-w-[470px]'>
               <h3 className='text-[23px] uppercase'>{p.name}</h3>
               <p className='pt-1 font-bold text-[21px] pb-3'>{currency}   {p.price}.00</p>  
             </div>
