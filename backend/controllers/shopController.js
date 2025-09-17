@@ -7,10 +7,14 @@ const uploadShopProduct = async(req,res)=>{
         if(!req.file) return res.status(400).send("Image is required")
             if(!name || !price || !category || !subCategory) return res.status(400).send("Missing fields")
 
-                const imagePath = `/uploads${req.file.filename}`
+                 // make sure values are lowercase before saving
+                  const normalizedCategory = category.toLowerCase();
+                  const normalizedSubCategory = subCategory.toLowerCase();
+
+                const imagePath = `/uploads/${req.file.filename}`
 
                 const product = new ShopProduct({
-                    category,subCategory,name,price:Number(price),image:imagePath,
+                    category:normalizedCategory,subCategory:normalizedSubCategory,name,price:Number(price),image:imagePath,
                 })
                 await product.save()
                 return res.json({success:true,product})
