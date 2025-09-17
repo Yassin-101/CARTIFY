@@ -25,9 +25,9 @@ const ShopProduct = () => {
       {/* subCategory */}
       <h1 className='text-5xl font-semibold uppercase p-8'>{subCategory}</h1>
       {/* sort & filtering */}
-      <div className='uppercase text-2xl underline flex flex-row justify-between items-center  '>
-        <p className='flex pl-8 mt-2 cursor-pointer'>sort by <Plus /></p>
-        <p className='flex pr-8 cursor-pointer'>filter <ListFilter /></p>
+      <div className='uppercase text-2xl underline flex flex-row justify-between items-center '>
+        <p className='flex pl-8 items-center  mt-2 cursor-pointer'>sort by<span className='pl-1 mt-1'> <Plus size={30} /></span> </p>
+        <p className='flex pr-8 items-center cursor-pointer'>filter <span className='pl-3'><ListFilter size={19} /></span></p>
       </div>
 
          {/* images */}
