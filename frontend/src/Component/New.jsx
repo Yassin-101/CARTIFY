@@ -1,50 +1,48 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-const New = ({category}) => {
-  const [latest,setLatest] = useState({
-    women:[],
-    men:[],
-    kid:[]
-  })
-  useEffect(()=>{
-    const fetchNew = async()=>{
+const New = ({ category }) => { // category passed as prop
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchNewCollection = async () => {
       try {
-      const res = await fetch("http://localhost:3100/api/new-collection"); 
-        const data = await res.json();
-        console.log("New Collection API:", data);
-
-        // this will trasform the backend array into object of keys
-        const transform = {
-          women: data.find((c)=> c.category === "women")?.images || [],
-          men : data.find((c)=>c.category === "men")?.images || [],
-          kid : data.find((c)=>c.category === "kid")?.images || [],
-        }
-        setLatest(transform)
+        const res = await axios.get("http://localhost:3100/api/products/new-collection");
+        // filter by category
+        const filtered = res.data.products?.filter((p) => p.category === category) || [];
+        setProducts(filtered);
       } catch (error) {
-        console.error("Error fetching new collection:", error)
+        console.error(error);
       }
-    }
-    fetchNew()
-  },[])
-  return (
-    <div>
-      <div className='text-left py-8 px-5 mt-10 text-xl flex flex-row justify-between '>
-        <p className='text-2xl'>NEW IN</p>
-        <p className='underline cursor-pointer uppercase'>View All</p>
-      </div>
-      {/* All 12 images */}
-      <div className='grid grid-cols-2 md:grid-cols-6'>
-       {
-        latest[category]?.map((img,index)=>{
-          return <div className='w-full' key={index}>
-            <img src={`http://localhost:3100${img}`} alt="" className='w-full h-auto object-cover cursor-pointer'/>
-          </div>
-        })
-       }
-      </div>
-    </div>
-  )
-}
+    };
+    fetchNewCollection();
+  }, [category]);
 
-export default New
+  return (
+    <div className="">
+      <div className="text-left py-8 px-5 mt-10 text-xl flex flex-row justify-between">
+        <p className="text-2xl">NEW IN</p>
+        <p className="underline cursor-pointer uppercase">View All</p>
+      </div>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
+        {products.map((p) => (
+          <Link key={p._id} to={`/product/${p._id}`}>
+            <img
+              src={`http://localhost:3100${p.images?.[0]}`}
+              alt={p.name}
+              className="w-full h-auto object-cover cursor-pointer"
+            />
+          </Link>
+        ))}
+      </div>
+
+      {products.length === 0 && (
+        <p className="mt-6 text-gray-500 text-xl">No products in new collection.</p>
+      )}
+    </div>
+  );
+};
+
+export default New;
