@@ -30,7 +30,7 @@ const New = ({ category }) => { // category passed as prop
         {products.map((p) => (
           <Link key={p._id} to={`/product/${p._id}`}>
             <img
-              src={`http://localhost:3100${p.images?.[0]}`}
+              src={`http://localhost:3100${p.images?.[3]}`}
               alt={p.name}
               className="w-full h-auto object-cover cursor-pointer"
             />
