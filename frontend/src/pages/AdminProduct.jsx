@@ -146,9 +146,9 @@ const AdminProduct = () => {
                       className="w-full h-42 flex items-center justify-center cursor-pointer border border-gray-300 rounded-lg overflow-hidden bg-white object-cover"
                     >
                         {preview[i] ? (
-                        <img src={preview[i]} alt={`preview-${i}`} className="w-full h-auto object-cover" />
+                        <img src={preview[i]}  className="w-full h-auto object-cover" />
                       ) : (
-                        <img src={uploadImg} alt="upload" className="w-10 opacity-50" />
+                        <img src={uploadImg} className="w-10 opacity-50" />
                       )}
                     </label>
                         {preview[i] && (
