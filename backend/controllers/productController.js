@@ -9,15 +9,17 @@ const uploadProduct = async(req,res) =>{
     }
 
     // if it is selected collection then you should save the first image
-    if(req.body.selectedCollection === "true" && files.length >0){
-      files =[files[0]]
-    }
+    // if(req.body.selectedCollection === "true" && files.length >0){
+    //   files =[files[0]]
+    // }
 
     const product = new Product({
       ...req.body,
       images:files,
       colors:JSON.parse(req.body.colors || "[]"),
-      sizes:JSON.parse(req.body.sizes || "[]")
+      sizes:JSON.parse(req.body.sizes || "[]"),
+       newCollection: req.body.newCollection === "true",
+      selectedCollection: req.body.selectedCollection === "true",
     })
     await product.save()
     res.status(201).json({message:"product Uploaded Successfully",product})
@@ -49,7 +51,7 @@ const getSelectedCollection = async(req,res)=>{
      console.error("Error fetching selected collection products:", error);
     return res.status(500).json({ message: "Failed to fetch product" });
   }
-}
+} 
 
 // get products by category/subCategory
 const getByCategory = async(req,res)=>{
