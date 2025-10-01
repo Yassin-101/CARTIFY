@@ -14,7 +14,9 @@ const productSchema = new mongoose.Schema(
   category:{type:String,required:true},
   subCategory:{type:String,required:true},
   newCollection:{type:Boolean,default:false},
-  selectedCollection:{type:Boolean,default:false}
+  selectedCollection:{type:Boolean,default:false},
+   description: { type: String, default: "" },
+    sleeveLength: { type: String, default: "" },
 
 },
  { timestamps: true }

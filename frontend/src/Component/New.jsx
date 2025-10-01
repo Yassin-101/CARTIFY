@@ -26,7 +26,7 @@ const New = ({ category }) => { // category passed as prop
         <p className="underline cursor-pointer uppercase">View All</p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 ">
         {products.map((p) => (
           <Link key={p._id} to={`/product/${p._id}`}>
             <img

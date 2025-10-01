@@ -17,8 +17,14 @@ const storage = multer.diskStorage({
 const upload = multer({storage})
 
 // upload upto 4 images for both collections
-router.post("/upload",upload.array("images",4),uploadProduct)
-router.post("/selected-collection",upload.array("images",4),uploadProduct)
+router.post("/upload", upload.array("images",4), (req,res) => {
+  req.body.newCollection = "true";
+  uploadProduct(req,res);
+});
+router.post("/selected-collection", upload.array("images",4), (req,res) => {
+  req.body.selectedCollection = "true";
+  uploadProduct(req,res);
+});
 
 //fetch routes
 router.get("/new-collection",getNewCollection)

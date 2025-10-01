@@ -5,27 +5,27 @@ const uploadProduct = async(req,res) =>{
     let files = []
 
     if(req.files && req.files.length > 0){
-      files=req.files.map((f)=>`/uploads/${f.filename}`)
+      files = req.files.map((f)=>`/uploads/${f.filename}`)
     }
-
-    // if it is selected collection then you should save the first image
-    // if(req.body.selectedCollection === "true" && files.length >0){
-    //   files =[files[0]]
-    // }
 
     const product = new Product({
       ...req.body,
-      images:files,
-      colors:JSON.parse(req.body.colors || "[]"),
-      sizes:JSON.parse(req.body.sizes || "[]"),
-       newCollection: req.body.newCollection === "true",
-      selectedCollection: req.body.selectedCollection === "true",
+      images: files,
+      colors: req.body.colors ? JSON.parse(req.body.colors) : [],
+      sizes: req.body.sizes ? JSON.parse(req.body.sizes) : [],
+      newCollection: req.body.newCollection === "true" || req.body.newCollection === true,
+      selectedCollection: req.body.selectedCollection === "true" || req.body.selectedCollection === true,
     })
+
     await product.save()
-    res.status(201).json({message:"product Uploaded Successfully",product})
+    res.status(201).json({message:"Product uploaded successfully", product})
+    
   } catch (error) {
-        console.error(error);
-    res.status(500).json({ message: "Failed to upload product" });
+    console.error(error)
+    if (error.code === 11000) {
+      return res.status(400).json({ message: "Duplicate article number. Product already exists." });
+    }
+    res.status(500).json({ message: "Failed to upload product", error: error.message });
   }
 }
 
