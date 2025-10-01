@@ -14,7 +14,7 @@ const ShopProduct = () => {
       try {
         let products = [];
         if (subCategory) {
-          // Fetch products for the specific subCategory
+          // Fetch products for the specific subCategory that will be taken from the backend
           const res = await axios.get(
             `http://localhost:3100/api/products/${category}/${subCategory}`
           );
@@ -50,12 +50,12 @@ const ShopProduct = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 cursor-pointer py-6 px-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 cursor-pointer py-6">
         {shopProduct.map((p) => {
   // decide which image to show
   const image =
     p.newCollection && p.images?.length > 1
-      ? p.images[1] //  show 2nd image for new collection
+      ? p.images[0] //  show 2nd image for new collection
       : p.images?.[0]; //  otherwise show 1st image (selected collection)
 
   const productId = p._id;
@@ -64,16 +64,16 @@ const ShopProduct = () => {
 
   return (
     <Link key={productId} to={`/product/${productId}`} className="group">
-      <div className="border rounded-md overflow-hidden hover:shadow-lg transition">
+      <div className="">
         <img
           src={`http://localhost:3100${image}`}
           alt={name}
-          className="w-full h-64 object-cover"
+          className="w-full object-cover"
         />
-        <div className="p-4">
-          <h3 className="text-lg uppercase">{name}</h3>
-          <p className="pt-1 font-bold text-lg">
-            {currency}{price}
+        <div className="py-3 pl-8 pb-12">
+          <h3 className="text-[22px] uppercase">{name}</h3>
+          <p className="pt-1 font-bold text-xl">  
+            {currency} {price}.00
           </p>
         </div>
       </div>
