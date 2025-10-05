@@ -5,7 +5,8 @@ const path = require("path")
 const {  uploadProduct,
   getNewCollection,
   getByCategory,
-  getProductById,getSelectedCollection} = require("../controllers/productController");
+  getProductById,getSelectedCollection,
+  getAllProducts} = require("../controllers/productController");
 
 const router = express.Router()
 
@@ -26,12 +27,17 @@ router.post("/selected-collection", upload.array("images",4), (req,res) => {
   uploadProduct(req,res);
 });
 
+
 //fetch routes
+router.get("/", getAllProducts);
+
 router.get("/new-collection",getNewCollection)
 router.get("/selected-collection",getSelectedCollection)
 
 // to keep the dynamic routes at last
 router.get("/:category/:subCategory",getByCategory)
 router.get("/:id",getProductById)
+
+
 
 module.exports = router
