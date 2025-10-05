@@ -41,7 +41,7 @@ const Footer = () => {
       </div>
 
       <div>
-        <p>Become a member today and get exclusive benifits!</p>
+        <p className='mb-2 max-w-[22rem]'>Become a member today and get exclusive benifits!</p>
         <div>
           <input type='email' placeholder='Enter your email address' className='border border-[#e4e4e4] outline-none px-4 py-3 text-md flex-grow'/>
           <button className='bg-black text-white py-3 px-4 text-lg font-bold cursor-pointer'>SIGN UP</button>
