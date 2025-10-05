@@ -17,6 +17,7 @@ import AdminSetting from './pages/AdminSetting'
 import AdminCustomer from './pages/AdminCustomer'
 import ShopProduct from './pages/ShopProduct'
 import AdminShopProduct from './pages/AdminShopProduct'
+import Product from './pages/Product'
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         {/* dynamic category route */}
         <Route path=":category" element={<ShopCategory />} />
          <Route path="/:category/:subCategory" element={<ShopProduct />} />
+         <Route path="/product/:id" element={<Product />} />
         {/* static pages */}
         <Route path="/Login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
