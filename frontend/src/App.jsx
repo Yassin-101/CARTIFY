@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 
 import MainLayout from './pages/MainLayout'
 import AdminLayout from './pages/AdminLayout'
@@ -24,6 +24,7 @@ const App = () => {
     <Routes>
       {/* MainLayout wraps all user pages */}
       <Route path="/" element={<MainLayout />}>
+        <Route index element={<Navigate to="/women" replace />} />
         {/* dynamic category route */}
         <Route path=":category" element={<ShopCategory />} />
          <Route path="/:category/:subCategory" element={<ShopProduct />} />
